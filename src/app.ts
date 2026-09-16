@@ -4,6 +4,16 @@ const PORT = process.env.PORT || 5600;
 
 const app: Application = express(); 
 
+// logging 
+app.use((req, _res, next) => {  
+
+     console.log(`${req.method} ${req.originalUrl}`); 
+
+    next(); 
+
+}); 
+
+//routes
 app.get("/ping", async (_req : Request, res: Response) => { 
 
     res.json({ 
@@ -28,19 +38,12 @@ app.get('/hello', async (_req : Request, res: Response) => {
 
     res.json({ 
 
-    message: "this is peak", 
+    message: "this is my own route", 
 
     }); 
 
 });
 
-app.use((req, _res, next) => {  
-
-     console.log(`${req.method} ${req.originalUrl}`); 
-
-    next(); 
-
-}); 
  
 app.listen(PORT, () => { 
 
